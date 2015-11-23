@@ -37,12 +37,21 @@ public class H2UserTest {
         user.setPassword("changedPassword");
         user.setType(UserType.STUDENT);
         assertTrue(h2User.update(user));
-
     }
 
     @Test
     public void testFind() throws Exception {
+        H2User h2User = new H2User();
 
+        String email = "jonas.jensen@msn.com";
+        String password = "abcdef";
+        UserType type = UserType.TEACHER;
+        User user = h2User.create(email, password, type);
+
+        User foundUser = h2User.find(user.getId());
+        assertEquals(email, foundUser.getEmail());
+        assertEquals(password, foundUser.getPassword());
+        assertEquals(type, foundUser.getType());
     }
 
     @Test

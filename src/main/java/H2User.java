@@ -66,9 +66,22 @@ public class H2User implements UserHandler {
 
     @Override
     public User find(int id) {
+        try (Connection connection = connectToDb();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM USERS WHERE ID = ? LIMIT 1")) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new User(resultSet.getInt(COL_ID),
+                        resultSet.getString(COL_EMAIL),
+                        resultSet.getString(COL_PASSWORD),
+                        resultSet.getInt(COL_USERTYPE) == TYPE_STUDENT ? UserType.STUDENT : UserType.TEACHER);
+            }
+        } catch (SQLException | ClassNotFoundException e1) {
+            e1.printStackTrace();
+        }
+
         return null;
     }
-
 
     @Override
     public List<User> getAll() {
