@@ -16,7 +16,7 @@ public class H2User implements UserHandler {
 
     private Connection connectToDb() throws SQLException, ClassNotFoundException {
         Class.forName("org.h2.Driver");
-        return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+        return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/javaee", "sa", "sa");
     }
 
     @Override
@@ -90,10 +90,12 @@ public class H2User implements UserHandler {
         try (Statement statement = connectToDb().createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM USERS");
             while (resultSet.next()) {
-                System.out.println(resultSet.getString(1));
+                users.add(new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getInt(4) == TYPE_STUDENT ? UserType.STUDENT : UserType.TEACHER));
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            return null;
         }
 
         return users;
@@ -101,6 +103,14 @@ public class H2User implements UserHandler {
 
     @Override
     public boolean delete(int id) {
+        try (Connection db = connectToDb();
+             PreparedStatement statement = db.prepareStatement("DELETE FROM USERS WHERE ID = ? LIMIT 1;")) {
+            statement.setInt(1, id);
+            return statement.executeUpdate() == 1;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 }
