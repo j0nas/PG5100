@@ -1,3 +1,6 @@
+package service;
+
+import javax.enterprise.inject.Alternative;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -5,6 +8,8 @@ import java.util.Optional;
 /**
  * Created by Jonas on 03.11.2015.
  */
+
+@Alternative
 public class ArraylistUser implements UserHandler {
     private List<User> users = new ArrayList<>();
     private int userCount = 0;

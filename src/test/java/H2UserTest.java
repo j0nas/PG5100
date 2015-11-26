@@ -1,6 +1,9 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import service.H2User;
+import service.User;
+import service.UserType;
 
 import java.util.List;
 

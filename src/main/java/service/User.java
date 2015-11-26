@@ -1,3 +1,5 @@
+package service;
+
 /**
  * Created by Jonas on 03.11.2015.
  */
@@ -49,6 +51,11 @@ public class User {
 
         User user = (User) o;
         return getId() == user.getId();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User{id=%d, email='%s', password='%s', type=%s}", id, email, password, type);
     }
 
     @Override

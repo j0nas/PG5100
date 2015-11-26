@@ -1,3 +1,6 @@
+package service;
+
+import javax.enterprise.inject.Alternative;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -5,6 +8,8 @@ import java.util.List;
 /**
  * Created by Jonas on 18.11.2015.
  */
+
+@Alternative
 public class H2User implements UserHandler {
     public static final int COL_ID = 1;
     public static final int COL_EMAIL = 2;

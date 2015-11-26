@@ -1,11 +1,12 @@
 import org.junit.Before;
 import org.junit.Test;
+import service.ArraylistUser;
+import service.User;
+import service.UserType;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by Jonas on 18.11.2015.
