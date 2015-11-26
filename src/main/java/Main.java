@@ -9,6 +9,10 @@ import javax.inject.Inject;
  * Created by Jonas on 26.11.2015.
  */
 public class Main {
+    static {
+        System.setProperty("org.jboss.logging.provider", "slf4j");
+    }
+
     @Inject
     private UserHandler userHandler;
 
