@@ -1,11 +1,15 @@
 package service;
 
-/**
- * Created by Jonas on 03.11.2015.
- */
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class User {
     private int id;
+    @NotNull
+    @Pattern(regexp = ".*@.*\\..*")
     private String email;
+    @NotNull
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$")
     private String password;
     private UserType type;
 
