@@ -5,7 +5,11 @@
        bean-discovery-mode="all">
 
     <alternatives>
-        <class>service.ArraylistUser</class>
-        <!--<class>service.H2User</class>-->
+        <!--class>ArraylistUser</class-->
+        <class>H2UserDao</class>
     </alternatives>
+
+    <interceptors>
+        <class>H2TransactionInterceptor</class>
+    </interceptors>
 </beans>

@@ -1,7 +1,5 @@
 import org.junit.Before;
 import org.junit.Test;
-import service.User;
-import service.UserType;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

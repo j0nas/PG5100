@@ -1,8 +1,5 @@
 import org.junit.Before;
 import org.junit.Test;
-import service.ArraylistUser;
-import service.User;
-import service.UserType;
 
 import java.util.List;
 

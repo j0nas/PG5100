@@ -1,16 +1,25 @@
-package service;
-
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+@NamedQueries(
+        @NamedQuery(name = "getAllUsers", query = "SELECT u FROM User u")
+)
+
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+
     @NotNull
     @Pattern(regexp = ".*@.*\\..*")
     private String email;
+
     @NotNull
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$")
     private String password;
+
     private UserType type;
 
     public User(int id, String email, String password, UserType type) {
@@ -18,6 +27,9 @@ public class User {
         this.email = email;
         this.password = password;
         this.type = type;
+    }
+
+    public User() {
     }
 
     public UserType getType() {
@@ -54,7 +66,8 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
-        return getId() == user.getId();
+        return getId() == user.getId() && getType().equals(user.getType()) &&
+                getEmail().equals(user.getEmail()) && getPassword().equals(user.getPassword());
     }
 
     @Override

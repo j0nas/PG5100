@@ -1,33 +1,22 @@
-import service.User;
-import service.UserHandler;
-import service.UserType;
-
 import javax.inject.Inject;
 
-/**
- * Created by Jonas on 26.11.2015.
- */
 public class UserService {
     @Inject
-    private UserHandler userHandler;
+    private H2UserDao dao;
 
     public void printUsers() {
-        User user = userHandler.create("jonas.jensen@msn.com", "12345", UserType.STUDENT);
-        User user1 = userHandler.create("contact@martinfolwer.com", "12345", UserType.TEACHER);
+        System.out.println("Creating user: ");
+        User user = dao.create("jonas.jensen@msn.com", "paSsssSsw0r1", UserType.STUDENT);
+        System.out.println(user);
 
-        System.out.println("All users:");
-        userHandler.getAll().forEach(System.out::println);
+        System.out.println("\nFinding user:");
+        System.out.println(dao.find(user.getId()));
 
-        System.out.println("User by ID:");
-        System.out.println(userHandler.find(user.getId()));
+        System.out.println("\nListing all users:");
+        dao.getAll().forEach(System.out::println);
 
-        user.setPassword("correct horse battery staple");
-        userHandler.update(user);
-        System.out.println("Updated user:");
-        userHandler.getAll().forEach(System.out::println);
-
-        userHandler.delete(user.getId());
-        System.out.println("Deleted user:");
-        userHandler.getAll().forEach(System.out::println);
+        System.out.println("\nDeleting user and re-listing all users:");
+        System.out.println("Deletion: " + dao.delete(user.getId()));
+        dao.getAll().forEach(System.out::println);
     }
 }
