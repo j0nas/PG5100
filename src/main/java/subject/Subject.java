@@ -10,6 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Subject.getAll",
+                query = "select s from Subject s"),
+        // Source: http://stackoverflow.com/questions/15254735/typedquery-with-manytomany-relations
+        @NamedQuery(name = "Subject.getUsersInCourse",
+                query = "select distinct (u) from User u " +
+                        "where exists (select s from Subject s where s.id = :subjectId)"),
+        @NamedQuery(name = "Subject.getLocationInSubject",
+                query = "select s.location from Subject s where s.id = :subjectId")
+})
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -17,13 +27,9 @@ public class Subject {
     @NotNull
     private String name;
     @Size(max = 100)
-    /*
     @ManyToMany
-    @JoinTable(name = "USR_SUB")
-    */
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "USR_SUB", joinColumns = @JoinColumn(name = "fk_course"),
-            inverseJoinColumns = @JoinColumn(name = "fk_user"))
+    @JoinTable(name = "USR_SUB", joinColumns = @JoinColumn(name = "FK_COURSE"),
+            inverseJoinColumns = @JoinColumn(name = "FK_USER"))
     private List<User> users = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "FK_LOCATION")
@@ -55,9 +61,5 @@ public class Subject {
 
     public int getId() {
         return id;
-    }
-
-    public void addUser(User user) {
-        getUsers().add(user);
     }
 }

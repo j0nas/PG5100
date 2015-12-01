@@ -28,16 +28,6 @@ public class SubjectDao implements AutoCloseable {
         return entityManager.find(Subject.class, subject.getId()).equals(subject) ? subject : null;
     }
 
-    public boolean addUser(int subjectId, User user) {
-        final Subject subject = find(subjectId);
-        entityManager.getTransaction().begin();
-        subject.addUser(user);
-        entityManager.merge(subject);
-        entityManager.getTransaction().commit();
-
-        return find(subjectId).getUsers().contains(user);
-    }
-
     public Subject find(int id) {
         return entityManager.find(Subject.class, id);
     }

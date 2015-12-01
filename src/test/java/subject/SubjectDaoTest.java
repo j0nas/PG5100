@@ -7,8 +7,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import user.User;
-import user.UserDao;
 import user.UserType;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 
 public class SubjectDaoTest {
     private SubjectDao dao;
@@ -52,22 +57,50 @@ public class SubjectDaoTest {
         Assert.assertEquals(subject, dao.find(subject.getId()));
     }
 
+
     @Test
-    public void testGetAssociatedUsers() throws Exception {
-        final UserDao dao = new UserDao();
-        final User student = dao.create("1@test.com", "TESTxPASSSW0RD", UserType.STUDENT);
-        final User teacher = dao.create("2@test.com", "TESTxPASSSW0RD", UserType.TEACHER);
+    public void testCourseUserAssociation() throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PG5100");
+        EntityManager entityManager = factory.createEntityManager();
 
-        final Subject subject = this.dao.create("PG5100 Enterprise Programming", null);
-        this.dao.addUser(subject.getId(), student);
-        this.dao.addUser(subject.getId(), teacher);
+        Location location = new Location();
+        location.setBuilding("Campus Galleriet");
+        location.setRoom("Auditorium");
 
-        Assert.assertEquals(2, this.dao.getAssociatedUsers(subject).size());
+        entityManager.getTransaction().begin();
+        entityManager.persist(location);
+        entityManager.getTransaction().commit();
 
-        Assert.assertEquals(1, dao.find(student.getId()).getSubjects().size());
-        Assert.assertEquals(subject, student.getSubjects().get(0));
+        User teacher = new User();
+        teacher.setEmail("2@test.com");
+        teacher.setPassword("TESTxPASSSW0RD");
+        teacher.setType(UserType.TEACHER);
 
-        Assert.assertEquals(1, teacher.getSubjects().size());
-        Assert.assertEquals(subject, teacher.getSubjects().get(0));
+        entityManager.getTransaction().begin();
+        entityManager.persist(teacher);
+        entityManager.getTransaction().commit();
+
+        ArrayList<User> users = new ArrayList<>();
+        users.add(teacher);
+
+        Subject subject = new Subject();
+        subject.setName("PG5100 Enterprise Programming");
+        subject.setLocation(location);
+        subject.setUsers(users);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(subject);
+        entityManager.getTransaction().commit();
+
+        TypedQuery<User> query = entityManager.createNamedQuery("Subject.getUsersInCourse", User.class).setParameter("subjectId", subject.getId());
+        query.getResultList().forEach(System.out::println);
+
+        User persistedUser = entityManager.find(User.class, teacher.getId());
+        System.out.println(persistedUser);
+        System.out.println(persistedUser.getSubjects().size());
+        persistedUser.getSubjects().forEach(System.out::println);
+
+        entityManager.close();
+        factory.close();
     }
 }

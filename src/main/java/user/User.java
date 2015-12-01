@@ -84,7 +84,10 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User{id=%d, email='%s', password='%s', type=%s}", id, email, password, type);
+        final StringBuilder stringBuilder = new StringBuilder();
+        subjects.forEach(subject -> stringBuilder.append(subject).append(" "));
+        return String.format("User{id=%d, email='%s', password='%s', type=%s, subjects=[ %s]}",
+                id, email, password, type, stringBuilder.toString());
     }
 
     @Override
