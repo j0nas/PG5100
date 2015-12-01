@@ -1,3 +1,5 @@
+package user;
+
 import javax.enterprise.inject.Alternative;
 import java.util.ArrayList;
 import java.util.List;

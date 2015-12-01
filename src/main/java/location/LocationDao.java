@@ -10,7 +10,7 @@ public class LocationDao {
     private final EntityManager entityManager;
 
     public LocationDao() {
-        final EntityManagerFactory factory = Persistence.createEntityManagerFactory("PG5100");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PG5100");
         entityManager = factory.createEntityManager();
     }
 
@@ -19,6 +19,10 @@ public class LocationDao {
         entityManager.persist(location);
         entityManager.getTransaction().commit();
         return entityManager.find(Location.class, location.getId()) != null;
+    }
+
+    public Location find(int id) {
+        return entityManager.find(Location.class, id);
     }
 
     public EntityManager getEntityManager() {

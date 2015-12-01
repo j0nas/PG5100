@@ -13,4 +13,13 @@ public class LocationDaoTest {
         location.setRoom("ROOM_TEST");
         Assert.assertTrue(dao.create(location));
     }
+
+    @Test
+    public void testFind() throws Exception {
+        final Location location = new Location();
+        location.setBuilding("BUILDING_TEST");
+        location.setRoom("ROOM_TEST");
+        Assert.assertTrue(dao.create(location));
+        Assert.assertNotNull(dao.find(location.getId()));
+    }
 }

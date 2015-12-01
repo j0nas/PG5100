@@ -19,14 +19,12 @@ public class LocationBeanValidation {
     public void setUp() throws Exception {
         validatorFactory = Validation.buildDefaultValidatorFactory();
         validator = validatorFactory.getValidator();
-        //validatorFactory.close();
+        validatorFactory.close();
     }
 
     @Test
     public void testLocationCannotHaveNullValues() throws Exception {
-        final Location location = new Location();
-        Set<ConstraintViolation<Location>> violations = validator.validate(location);
-        //violations.forEach(System.out::println);
+        Set<ConstraintViolation<Location>> violations = validator.validate(new Location());
         assertEquals(2, violations.size());
     }
 
@@ -36,7 +34,6 @@ public class LocationBeanValidation {
         location.setRoom("Auditorium");
         location.setBuilding("Campus Galleriet");
         Set<ConstraintViolation<Location>> violations = validator.validate(location);
-        violations.forEach(System.out::println);
         assertEquals(0, violations.size());
     }
 

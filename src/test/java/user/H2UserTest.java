@@ -1,3 +1,5 @@
+package user;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,9 +8,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Jonas on 21.11.2015.
- */
 public class H2UserTest {
     private H2User h2User = new H2User();
     private String email = "jonas.jensen@msn.com";

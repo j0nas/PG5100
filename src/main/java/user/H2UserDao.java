@@ -1,3 +1,5 @@
+package user;
+
 import javax.enterprise.inject.Alternative;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

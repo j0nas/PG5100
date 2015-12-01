@@ -1,5 +1,7 @@
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
+import user.UserHandler;
+import user.UserService;
 
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;

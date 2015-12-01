@@ -1,3 +1,5 @@
+package user;
+
 import javax.inject.Inject;
 
 public class UserService {
