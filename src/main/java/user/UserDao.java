@@ -8,11 +8,11 @@ import java.util.List;
 
 @H2Transaction
 @Alternative
-public class H2UserDao implements UserHandler {
+public class UserDao implements UserHandler {
     private EntityManager entityManager;
 
-    public H2UserDao() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("USER");
+    public UserDao() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PG5100");
         entityManager = factory.createEntityManager();
     }
 

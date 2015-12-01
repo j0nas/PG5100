@@ -7,9 +7,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Jonas on 18.11.2015.
- */
 public class ArraylistUserTest {
     private ArraylistUser userHandler = new ArraylistUser();
     private int id = -1;

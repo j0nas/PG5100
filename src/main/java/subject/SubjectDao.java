@@ -1,11 +1,13 @@
 package subject;
 
 import location.Location;
+import user.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 public class SubjectDao implements AutoCloseable {
     @PersistenceContext(unitName = "PG5100")
@@ -28,6 +30,10 @@ public class SubjectDao implements AutoCloseable {
 
     public Subject find(int id) {
         return entityManager.find(Subject.class, id);
+    }
+
+    public List<User> getAssociatedUsers(Subject subject) {
+        return subject.getUsers();
     }
 
     @Override

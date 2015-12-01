@@ -16,10 +16,10 @@ public class Subject {
     @NotNull
     private String name;
     @Size(max = 100)
-    @OneToMany
-    @CollectionTable(name = "SUBJECT_USERS", joinColumns = @JoinColumn(name = "ID"))
+    @ManyToMany
+    @JoinTable(name = "USR_SUB")
     private List<User> users;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "FK_LOCATION")
     private Location location;
 

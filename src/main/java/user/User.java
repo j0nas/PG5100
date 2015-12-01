@@ -1,8 +1,11 @@
 package user;
 
+import subject.Subject;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @NamedQueries(
         @NamedQuery(name = "getAllUsers", query = "SELECT u FROM User u")
@@ -23,6 +26,9 @@ public class User {
     private String password;
 
     private UserType type;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Subject> subjects;
 
     public User(int id, String email, String password, UserType type) {
         this.id = id;

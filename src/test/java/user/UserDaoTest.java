@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 
 import static junit.framework.Assert.*;
 
-public class H2UserDaoTest {
-    H2UserDao dao = new H2UserDao();
+public class UserDaoTest {
+    UserDao dao = new UserDao();
     EntityManager entityManager;
 
     @Before
@@ -55,15 +55,6 @@ public class H2UserDaoTest {
         System.out.println("Created: " + (dao.find(user.getId()) != null));
         System.out.println("\n");
         System.out.println(dao.getAll().size());
-        /*
-        System.out.println(dao.find(user.getId()));
-        System.out.println(dao.getAll().size());
-        System.out.println("USERS: ");
-        dao.getAll().forEach(System.out::println);
-        System.out.println("END");
-        assertTrue(dao.getAll().size() > 0);
-        */
-
     }
 
     @Test

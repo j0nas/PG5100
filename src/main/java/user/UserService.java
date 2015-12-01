@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 public class UserService {
     @Inject
-    private H2UserDao dao;
+    private UserDao dao;
 
     public void printUsers() {
         System.out.println("Creating user: ");

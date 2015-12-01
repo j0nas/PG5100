@@ -29,7 +29,7 @@ public class H2TransactionInterceptor {
                     .collect(Collectors.joining(", ")));
         } TODO */
 
-        final EntityManager entityManager = ((H2UserDao) ic.getTarget()).getEntityManager();
+        final EntityManager entityManager = ((UserDao) ic.getTarget()).getEntityManager();
         entityManager.getTransaction().begin();
         try {
             return ic.proceed();

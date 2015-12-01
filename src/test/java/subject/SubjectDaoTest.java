@@ -48,4 +48,9 @@ public class SubjectDaoTest {
         Assert.assertNotNull(subject);
         Assert.assertEquals(subject, dao.find(subject.getId()));
     }
+
+    @Test
+    public void testGetAssociatedUsers() throws Exception {
+        //dao.getAssociatedUsers()
+    }
 }
