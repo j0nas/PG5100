@@ -6,6 +6,7 @@ import user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Subject {
     @Size(max = 100)
     @ManyToMany
     @JoinTable(name = "USR_SUB")
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "FK_LOCATION")
     private Location location;
@@ -49,5 +50,9 @@ public class Subject {
 
     public int getId() {
         return id;
+    }
+
+    public void addUser(User user) {
+        getUsers().add(user);
     }
 }

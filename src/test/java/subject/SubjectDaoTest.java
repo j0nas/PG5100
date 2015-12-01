@@ -6,6 +6,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import user.User;
+import user.UserDao;
+import user.UserType;
 
 public class SubjectDaoTest {
     private SubjectDao dao;
@@ -51,6 +54,20 @@ public class SubjectDaoTest {
 
     @Test
     public void testGetAssociatedUsers() throws Exception {
-        //dao.getAssociatedUsers()
+        final UserDao dao = new UserDao();
+        final User student = dao.create("1@test.com", "TESTxPASSSW0RD", UserType.STUDENT);
+        final User teacher = dao.create("2@test.com", "TESTxPASSSW0RD", UserType.TEACHER);
+
+        final Subject subject = this.dao.create("PG5100 Enterprise Programming", null);
+        subject.addUser(student);
+        subject.addUser(teacher);
+
+        Assert.assertEquals(2, this.dao.getAssociatedUsers(subject).size());
+
+        Assert.assertEquals(1, dao.find(student.getId()).getSubjects().size());
+        Assert.assertEquals(subject, student.getSubjects().get(0));
+
+        Assert.assertEquals(1, teacher.getSubjects().size());
+        Assert.assertEquals(subject, teacher.getSubjects().get(0));
     }
 }

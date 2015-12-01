@@ -5,6 +5,7 @@ import subject.Subject;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.List;
 
 @NamedQueries(
@@ -26,9 +27,8 @@ public class User {
     private String password;
 
     private UserType type;
-
     @ManyToMany(mappedBy = "users")
-    private List<Subject> subjects;
+    private List<Subject> subjects = new ArrayList<>();
 
     public User(int id, String email, String password, UserType type) {
         this.id = id;
@@ -38,6 +38,10 @@ public class User {
     }
 
     public User() {
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
     public UserType getType() {
