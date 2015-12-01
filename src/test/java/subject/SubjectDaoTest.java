@@ -59,8 +59,8 @@ public class SubjectDaoTest {
         final User teacher = dao.create("2@test.com", "TESTxPASSSW0RD", UserType.TEACHER);
 
         final Subject subject = this.dao.create("PG5100 Enterprise Programming", null);
-        subject.addUser(student);
-        subject.addUser(teacher);
+        this.dao.addUser(subject.getId(), student);
+        this.dao.addUser(subject.getId(), teacher);
 
         Assert.assertEquals(2, this.dao.getAssociatedUsers(subject).size());
 

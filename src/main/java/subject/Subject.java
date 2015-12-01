@@ -17,8 +17,13 @@ public class Subject {
     @NotNull
     private String name;
     @Size(max = 100)
+    /*
     @ManyToMany
     @JoinTable(name = "USR_SUB")
+    */
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "USR_SUB", joinColumns = @JoinColumn(name = "fk_course"),
+            inverseJoinColumns = @JoinColumn(name = "fk_user"))
     private List<User> users = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "FK_LOCATION")
