@@ -11,7 +11,7 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-public class BeanValidationTest {
+public class UserBeanValidationTest {
     private Validator validator;
 
     @Before

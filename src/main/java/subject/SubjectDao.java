@@ -1,5 +1,7 @@
 package subject;
 
+import location.Location;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -14,9 +16,10 @@ public class SubjectDao implements AutoCloseable {
         entityManager = factory.createEntityManager();
     }
 
-    public Subject create(String name) {
+    public Subject create(String name, Location location) {
         Subject subject = new Subject();
         subject.setName(name);
+        subject.setLocation(location);
         entityManager.getTransaction().begin();
         entityManager.persist(subject);
         entityManager.getTransaction().commit();

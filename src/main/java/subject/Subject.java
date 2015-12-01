@@ -1,5 +1,6 @@
 package subject;
 
+import location.Location;
 import user.User;
 
 import javax.persistence.*;
@@ -9,15 +10,26 @@ import java.util.List;
 
 @Entity
 public class Subject {
-    @Size(max = 100)
-    @OneToMany
-    @CollectionTable(name = "SUBJECT_USERS", joinColumns = @JoinColumn(name = "ID"))
-    private List<User> users;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @NotNull
     private String name;
+    @Size(max = 100)
+    @OneToMany
+    @CollectionTable(name = "SUBJECT_USERS", joinColumns = @JoinColumn(name = "ID"))
+    private List<User> users;
+    @OneToOne
+    @JoinColumn(name = "FK_LOCATION")
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public List<User> getUsers() {
         return users;
