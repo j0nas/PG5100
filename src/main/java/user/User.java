@@ -27,7 +27,7 @@ public class User {
     private String password;
 
     private UserType type;
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Subject> subjects = new ArrayList<>();
 
     public User(int id, String email, String password, UserType type) {

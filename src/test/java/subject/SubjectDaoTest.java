@@ -63,32 +63,29 @@ public class SubjectDaoTest {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("PG5100");
         EntityManager entityManager = factory.createEntityManager();
 
+        entityManager.getTransaction().begin();
         Location location = new Location();
         location.setBuilding("Campus Galleriet");
         location.setRoom("Auditorium");
-
-        entityManager.getTransaction().begin();
         entityManager.persist(location);
         entityManager.getTransaction().commit();
 
+        entityManager.getTransaction().begin();
         User teacher = new User();
         teacher.setEmail("2@test.com");
         teacher.setPassword("TESTxPASSSW0RD");
         teacher.setType(UserType.TEACHER);
-
-        entityManager.getTransaction().begin();
         entityManager.persist(teacher);
         entityManager.getTransaction().commit();
 
         ArrayList<User> users = new ArrayList<>();
         users.add(teacher);
 
+        entityManager.getTransaction().begin();
         Subject subject = new Subject();
         subject.setName("PG5100 Enterprise Programming");
         subject.setLocation(location);
         subject.setUsers(users);
-
-        entityManager.getTransaction().begin();
         entityManager.persist(subject);
         entityManager.getTransaction().commit();
 
