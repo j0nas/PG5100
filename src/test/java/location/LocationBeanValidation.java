@@ -1,5 +1,6 @@
 package location;
 
+import entity.Location;
 import org.junit.Before;
 import org.junit.Test;
 

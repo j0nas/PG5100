@@ -1,7 +1,4 @@
-package subject;
-
-import location.Location;
-import user.User;
+package entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +10,6 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Subject.getAll",
                 query = "select s from Subject s"),
-        // Source: http://stackoverflow.com/questions/15254735/typedquery-with-manytomany-relations
         @NamedQuery(name = "Subject.getUsersInCourse",
                 query = "select distinct (u) from User u " +
                         "where exists (select s from Subject s where s.id = :subjectId)"),

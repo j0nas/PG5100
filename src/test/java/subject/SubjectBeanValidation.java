@@ -1,8 +1,9 @@
 package subject;
 
+import entity.Subject;
+import entity.User;
 import org.junit.Before;
 import org.junit.Test;
-import user.User;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

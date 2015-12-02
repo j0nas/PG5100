@@ -1,6 +1,6 @@
-package user;
+package entity;
 
-import subject.Subject;
+import common.UserType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,14 +8,11 @@ import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQueries(
-        @NamedQuery(name = "getAllUsers", query = "SELECT u FROM User u")
-)
-
 @Entity
+@NamedQuery(name = "User.getAll", query = "SELECT u FROM User u")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
@@ -30,18 +27,12 @@ public class User {
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Subject> subjects = new ArrayList<>();
 
-    public User(int id, String email, String password, UserType type) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.type = type;
-    }
-
-    public User() {
-    }
-
     public List<Subject> getSubjects() {
         return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     public UserType getType() {

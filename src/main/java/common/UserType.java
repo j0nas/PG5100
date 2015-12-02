@@ -1,4 +1,4 @@
-package user;
+package common;
 
 /**
  * Created by Jonas on 03.11.2015.

@@ -1,5 +1,7 @@
 package user;
 
+import common.UserType;
+import entity.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +24,7 @@ public class UserBeanValidationTest {
 
     @Test
     public void testUserCannotHaveNullValues() throws Exception {
-        User user = new User(1, null, null, null);
+        User user = new User();
         Set<ConstraintViolation<User>> violations = validator.validate(user);
         //violations.forEach(System.out::println);
         assertEquals(2, violations.size());
@@ -30,7 +32,10 @@ public class UserBeanValidationTest {
 
     @Test
     public void testValidValuesShouldWork() throws Exception {
-        User user = new User(1, "jonas.jensen@msn.com", "thisIsAValidPassword1", UserType.STUDENT);
+        User user = new User();
+        user.setEmail("jonas.jensen@msn.com");
+        user.setPassword("thisIsAValidPassword1");
+        user.setType(UserType.STUDENT);
         Set<ConstraintViolation<User>> violations = validator.validate(user);
         violations.forEach(System.out::println);
         assertEquals(0, violations.size());
