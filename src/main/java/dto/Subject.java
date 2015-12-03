@@ -20,6 +20,7 @@ public class Subject {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USR_SUB")
     //, joinColumns = @JoinColumn(name = "FK_COURSE"), inverseJoinColumns = @JoinColumn(name = "FK_USER"))
+    // TODO ^remove?
     private List<User> users;
 
     @ManyToOne

@@ -1,6 +1,8 @@
 package infrastructure.subject;
 
+import dto.Location;
 import dto.Subject;
+import infrastructure.location.JpaLocationDao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,10 +28,21 @@ public class JpaSubjectDaoIT {
         entityManager = factory.createEntityManager();
         dao = new JpaSubjectDao(entityManager);
 
+        JpaLocationDao locationDao = new JpaLocationDao(entityManager);
+        Location location = new Location();
+        location.setBuilding("BUILDING_TEST");
+        location.setRoom("ROOM_TEST");
+
         entityManager.getTransaction().begin();
+        location = locationDao.persist(location);
+        entityManager.getTransaction().commit();
+
         subject = new Subject();
         subject.setName("NAME_TEST");
         subject.setUsers(new ArrayList<>());
+        subject.setLocation(location);
+
+        entityManager.getTransaction().begin();
         subject = dao.persist(subject);
         entityManager.getTransaction().commit();
     }

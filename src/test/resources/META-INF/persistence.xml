@@ -10,13 +10,12 @@
         <class>dto.Event</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pg5100-lms"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/pg5100"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="dialect" value="org.hibernate.dialect.H2Dialect"/>
 
             <property name="hibernate.hbm2ddl.auto" value="create"/>
-            <property name="hibernate.hbm2ddl.import_files" value="init.sql"/>
             <property name="hibernate.show_sql" value="false"/>
         </properties>
     </persistence-unit>

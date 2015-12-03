@@ -26,10 +26,10 @@ public class Event {
     @Size(max = 100)
     private String description;
 
-    @Valid
     @NotNull
-    @OneToOne
-    @JoinTable(name = "SUBJECT", joinColumns = {@JoinColumn(name = "FK_SUBJECT")})
+    @ManyToOne
+    @JoinColumn(name = "FK_SUBJECT")
+    @Valid
     private Subject subject;
 
     @NotNull
