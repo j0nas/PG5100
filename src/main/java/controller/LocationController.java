@@ -6,11 +6,12 @@ import infrastructure.location.LocationDao;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import java.util.List;
 
 @Model
 public class LocationController {
     @Inject
-    private LocationDao locationDao;
+    private LocationDao dao;
 
     private Location location;
 
@@ -28,6 +29,10 @@ public class LocationController {
     }
 
     public void persist() {
-        locationDao.persist(location);
+        dao.persist(location);
+    }
+
+    public List<Location> getAll() {
+        return dao.getAll();
     }
 }

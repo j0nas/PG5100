@@ -4,23 +4,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
-    <h2>New location</h2>
+    <h2>New event</h2>
     <h:form>
         <h:outputLabel value="Building: "/>
-        <h:inputText value="#{locationController.building}"/>
+        <h:inputText value="#{locationController.location.building}"/>
         <br/>
         <br/>
         <h:outputLabel value="Room: "/>
-        <h:inputText value="#{locationController.room}"/>
+        <h:inputText value="#{locationController.location.room}"/>
         <br/>
         <br/>
         <h:commandButton value="Save" type="submit"
-                         action="#{locationController.save(locationController.building, locationController.room)}"/>
+                         action="#{locationController.persist()}"/>
     </h:form>
     <hr/>
     <ul>
-        <c:forEach var="location" items="#{locationController.get()}">
-            <li><h:outputText value="#{location.room}"/></li>
+        <c:forEach var="location" items="#{locationController.getAll()}">
+            <li>
+                <h:outputText value="#{location.getBuilding()} - #{location.getRoom()}"/>
+            </li>
         </c:forEach>
     </ul>
 </h:body>
