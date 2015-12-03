@@ -27,7 +27,7 @@ public class JpaSubjectDao implements SubjectDao {
 
     @Override
     public Subject findById(int id) {
-        return null;
+        return entityManager.find(Subject.class, id);
     }
 
     @Override

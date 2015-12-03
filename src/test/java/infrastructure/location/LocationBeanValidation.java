@@ -1,4 +1,4 @@
-package location;
+package infrastructure.location;
 
 import dto.Location;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package subject;
+package infrastructure.subject;
 
 import dto.Subject;
 import dto.User;

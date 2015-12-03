@@ -1,4 +1,4 @@
-package user;
+package infrastructure.user;
 
 import dto.User;
 import dto.UserType;

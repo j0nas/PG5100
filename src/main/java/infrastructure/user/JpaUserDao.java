@@ -13,6 +13,13 @@ public class JpaUserDao implements UserDao {
     @PersistenceContext(unitName = "PG5100")
     private EntityManager entityManager;
 
+    public JpaUserDao() {
+    }
+
+    public JpaUserDao(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Override
     public User persist(User user) {
         entityManager.persist(user);
