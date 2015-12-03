@@ -1,44 +1,33 @@
 package controller;
 
-import ejb.LocationRegistryBean;
-import entity.Location;
+import dto.Location;
+import infrastructure.location.LocationDao;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import java.util.List;
 
 @Model
 public class LocationController {
-    private LocationRegistryBean locationRegistry;
-    private String building;
-    private String room;
-
-    public String getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(String building) {
-        this.building = building;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
     @Inject
-    public void setLocationRegistry(LocationRegistryBean locationRegistry) {
-        this.locationRegistry = locationRegistry;
+    private LocationDao locationDao;
+
+    private Location location;
+
+    @PostConstruct
+    private void init() {
+        location = new Location();
     }
 
-    public Location save(String building, String room) {
-        return locationRegistry.save(building, room);
+    public Location getLocation() {
+        return location;
     }
 
-    public List<Location> get() {
-        return locationRegistry.getAll();
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void persist() {
+        locationDao.persist(location);
     }
 }

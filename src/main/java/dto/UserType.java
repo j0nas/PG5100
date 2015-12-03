@@ -1,4 +1,4 @@
-package common;
+package dto;
 
 /**
  * Created by Jonas on 03.11.2015.

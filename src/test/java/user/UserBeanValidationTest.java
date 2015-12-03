@@ -1,7 +1,7 @@
 package user;
 
-import common.UserType;
-import entity.User;
+import dto.User;
+import dto.UserType;
 import org.junit.Before;
 import org.junit.Test;
 

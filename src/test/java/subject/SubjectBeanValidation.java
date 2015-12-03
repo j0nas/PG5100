@@ -1,7 +1,7 @@
 package subject;
 
-import entity.Subject;
-import entity.User;
+import dto.Subject;
+import dto.User;
 import org.junit.Before;
 import org.junit.Test;
 

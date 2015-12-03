@@ -1,4 +1,4 @@
-package entity;
+package dto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
