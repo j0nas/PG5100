@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Time;
+import java.util.Date;
 
 @Entity
 @NamedQuery(name = "Event.getAll", query = "SELECT e FROM Event e")
@@ -29,14 +29,16 @@ public class Event {
     @Valid
     @NotNull
     @OneToOne
-    @JoinTable(joinColumns = {@JoinColumn(name = "FK_SUBJECT")})
+    @JoinTable(name = "SUBJECT", joinColumns = {@JoinColumn(name = "FK_SUBJECT")})
     private Subject subject;
 
     @NotNull
-    private Time startTime;
+    @Column(table = "EVENT_DETAILS")
+    private Date startTime;
 
     @NotNull
-    private Time endTime;
+    @Column(table = "EVENT_DETAILS")
+    private Date endTime;
 
     public EventType getType() {
         return type;
@@ -62,19 +64,19 @@ public class Event {
         this.subject = subject;
     }
 
-    public Time getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 

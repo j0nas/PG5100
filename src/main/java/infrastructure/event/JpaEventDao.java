@@ -5,6 +5,7 @@ import dto.Event;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 
 @Stateless
@@ -32,6 +33,11 @@ public class JpaEventDao implements EventDao {
 
     @Override
     public List<Event> getAll() {
-        return entityManager.createNamedQuery("Event.getAll", Event.class).getResultList();
+        final List<Event> resultList = entityManager.createNamedQuery("Event.getAll", Event.class).getResultList();
+        if (resultList != null) {
+            Collections.sort(resultList, (o1, o2) -> o1.getStartTime().compareTo(o2.getStartTime()));
+        }
+
+        return resultList;
     }
 }
