@@ -23,6 +23,9 @@ public class Event {
     @Size(min = 5, max = 25)
     private String title;
 
+    @Size(max = 100)
+    private String description;
+
     @Valid
     @NotNull
     @OneToOne
@@ -81,5 +84,13 @@ public class Event {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
