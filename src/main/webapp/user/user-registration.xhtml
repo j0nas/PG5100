@@ -17,7 +17,7 @@
             <h:inputSecret id="password" value="#{userController.user.password}"/>
             <br/>
             <h:outputLabel for="userType" value="Type"/>
-            <h:selectOneMenu id="userType" value="#{userController.user.userType}">
+            <h:selectOneMenu id="userType" value="#{userController.user.type}">
                 <f:selectItems value="#{userController.getUserTypes()}"/>
             </h:selectOneMenu>
             <br/>
