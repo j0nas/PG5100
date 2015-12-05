@@ -11,4 +11,7 @@ tabell	kalt	”EVENT_DETAILS”	skal	lagre	start	og	sluttidspunkt,	mens
 resten	av	informasjonen	skal	lagres	i	tabellen	”EVENT”.		JPA	skal
 konfigureres	til	å	håndtere	dette.	Se	vedlegg	1.
      */
+    // TODO Det	forventes at noe data settes	inn	i H2 databasen ved deployment/oppstart av systemet.
+    // TODO Systemet	skal	kunne	deployes	med	kommandoen	”mvn	wildfly:deploy”.	Skriv
+    // TODO ned	URL	som	skal	benyttes	for	å	nå	websidene	i	dokumentet	som	leveres.
 }

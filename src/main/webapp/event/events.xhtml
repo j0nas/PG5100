@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <p:dataTable var="event" value="#{eventController.getAll()}">
+            <p:column headerText="Id">
+                <h:outputText value="#{event.id}"/>
+            </p:column>
+            <p:column headerText="Type">
+                <h:outputText value="#{event.type}"/>
+            </p:column>
+            <p:column headerText="Title">
+                <h:outputText value="#{event.title}"/>
+            </p:column>
+            <p:column headerText="Description">
+                <h:outputText value="#{event.description}"/>
+            </p:column>
+            <p:column headerText="Subject">
+                <h:outputText value="#{event.subject.name}"/>
+            </p:column>
+            <p:column headerText="Start">
+                <h:outputText value="#{event.startTime}"/>
+            </p:column>
+            <p:column headerText="End">
+                <h:outputText value="#{event.endTime}"/>
+            </p:column>
+        </p:dataTable>
+    </ui:define>
+</ui:composition>
+</html>

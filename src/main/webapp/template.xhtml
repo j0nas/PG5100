@@ -19,7 +19,14 @@
                 <p:menuitem value="New" url="/subject/subject-registration.xhtml"/>
                 <p:menuitem value="List" url="/subject/subjects.xhtml"/>
             </p:submenu>
-            <p:menuitem value="New location" url="/location/location-registration.xhtml"/>
+            <p:submenu label="Location">
+                <p:menuitem value="New" url="/location/location-registration.xhtml"/>
+                <p:menuitem value="List" url="/location/locations.xhtml"/>
+            </p:submenu>
+            <p:submenu label="Event">
+                <p:menuitem value="New" url="/event/event-registration.xhtml"/>
+                <p:menuitem value="List" url="/event/events.xhtml"/>
+            </p:submenu>
         </p:menubar>
     </h:form>
     <br/>
