@@ -10,7 +10,7 @@ import java.util.List;
 @NamedQuery(name = "Subject.getAll", query = "select s from Subject s")
 public class Subject {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
