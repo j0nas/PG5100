@@ -34,4 +34,9 @@ public class JpaLocationDao implements LocationDao {
     public List<Location> getAll() {
         return entityManager.createNamedQuery("Location.getAll", Location.class).getResultList();
     }
+
+    @Override
+    public void removeById(int id) {
+        entityManager.remove(findById(id));
+    }
 }

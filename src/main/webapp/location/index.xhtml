@@ -4,18 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
-        <p:dataTable var="location" value="#{locationController.getAll()}">
-            <p:column headerText="Id">
-                <h:outputText value="#{location.id}"/>
-            </p:column>
-            <p:column headerText="Name">
+        <p:dataTable id="locations" var="location" value="#{locationController.getAll()}">
+            <p:column headerText="Room">
                 <h:outputText value="#{location.room}"/>
             </p:column>
             <p:column headerText="Building">
                 <h:outputText value="#{location.building}"/>
+            </p:column>
+            <p:column headerText="Actions">
+                <p:link outcome="details">
+                    <f:param name="id" value="#{location.id}"/>
+                    <p:button value="Details"/>
+                </p:link>
+
+                <p:commandButton value="Delete" action="#{locationController.delete(location.id)}" update="locations"/>
             </p:column>
         </p:dataTable>
     </ui:define>

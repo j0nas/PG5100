@@ -10,4 +10,6 @@ public interface LocationDao {
     Location findById(int id);
 
     List<Location> getAll();
+
+    void removeById(int id);
 }

@@ -22,7 +22,7 @@ public class Location {
         if (o == null || getClass() != o.getClass()) return false;
 
         Location location = (Location) o;
-        return id == location.id && room.equals(location.room) && building.equals(location.building);
+        return getId() == location.getId() && getRoom().equals(location.getRoom()) && getBuilding().equals(location.getBuilding());
     }
 
     @Override

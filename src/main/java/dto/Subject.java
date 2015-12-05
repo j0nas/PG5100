@@ -32,8 +32,6 @@ public class Subject {
         for (User user : users) {
             user.getSubjects().remove(this);
         }
-
-        setLocation(null);
     }
 
     public int getId() {
