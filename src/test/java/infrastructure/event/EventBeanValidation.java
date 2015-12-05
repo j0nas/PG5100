@@ -10,7 +10,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -33,8 +33,8 @@ public class EventBeanValidation {
         event.setType(EventType.LECTURE);
         event.setTitle("TEST_TITLE");
         event.setSubject(subject);
-        event.setStartTime(new Date());
-        event.setEndTime(new Date());
+        event.setStartTime(LocalDateTime.now());
+        event.setEndTime(LocalDateTime.now().plusHours(3));
     }
 
     @Test

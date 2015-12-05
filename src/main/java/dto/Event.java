@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @NamedQuery(name = "Event.getAll", query = "SELECT e FROM Event e")
@@ -34,11 +34,11 @@ public class Event {
 
     @NotNull
     @Column(table = "EVENT_DETAILS")
-    private Date startTime;
+    private LocalDateTime startTime;
 
     @NotNull
     @Column(table = "EVENT_DETAILS")
-    private Date endTime;
+    private LocalDateTime endTime;
 
     public EventType getType() {
         return type;
@@ -64,19 +64,19 @@ public class Event {
         this.subject = subject;
     }
 
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
