@@ -1,5 +1,6 @@
 package dto;
 
+import javax.annotation.PreDestroy;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -39,6 +40,11 @@ public class Event {
     @NotNull
     @Column(table = "EVENT_DETAILS")
     private LocalDateTime endTime;
+
+    @PreDestroy
+    private void removeSubjectFromEvent() {
+        setSubject(null);
+    }
 
     public EventType getType() {
         return type;

@@ -1,5 +1,6 @@
 package dto;
 
+import javax.annotation.PreDestroy;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -17,16 +18,23 @@ public class Subject {
     private String name;
 
     @Size(max = 100)
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "USR_SUB")
-    //, joinColumns = @JoinColumn(name = "FK_COURSE"), inverseJoinColumns = @JoinColumn(name = "FK_USER"))
-    // TODO ^remove?
     private List<User> users;
 
     @ManyToOne
     @JoinColumn(name = "FK_LOCATION")
     @Valid
     private Location location;
+
+    @PreDestroy
+    private void removeLocationsAndUsersFromSubject() {
+        for (User user : users) {
+            user.getSubjects().remove(this);
+        }
+
+        setLocation(null);
+    }
 
     public int getId() {
         return id;

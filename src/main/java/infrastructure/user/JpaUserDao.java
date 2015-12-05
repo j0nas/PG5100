@@ -50,4 +50,9 @@ public class JpaUserDao implements UserDao {
         entityManager.remove(user);
         return true;
     }
+
+    @Override
+    public void removeById(int id) {
+        remove(findById(id));
+    }
 }

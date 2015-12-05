@@ -10,4 +10,6 @@ public interface SubjectDao {
     Subject findById(int id);
 
     List<Subject> getAll();
+
+    void removeById(int id);
 }

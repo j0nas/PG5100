@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class UserController {
     @Inject
     @JpaUser
-    private UserDao userDao;
+    private UserDao dao;
 
     private int selectedId;
     private User user;
@@ -29,15 +29,15 @@ public class UserController {
     }
 
     public void persist() {
-        userDao.persist(user);
+        dao.persist(user);
     }
 
     public List<User> getAll() {
-        return userDao.getAll();
+        return dao.getAll();
     }
 
     public void initUser() {
-        user = userDao.findById(selectedId);
+        user = dao.findById(selectedId);
     }
 
     public int getSelectedId() {
@@ -54,6 +54,10 @@ public class UserController {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void delete(int id) {
+        dao.removeById(id);
     }
 
     public List<SelectItem> getUserTypes() {

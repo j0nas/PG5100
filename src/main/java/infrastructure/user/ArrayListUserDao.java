@@ -36,4 +36,9 @@ public class ArrayListUserDao implements UserDao {
         users.set(user.getId(), null);
         return true;
     }
+
+    @Override
+    public void removeById(int id) {
+        users.set(id, null);
+    }
 }

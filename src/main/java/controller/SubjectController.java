@@ -100,6 +100,10 @@ public class SubjectController {
         return userDao.getAll().stream().map(u -> new SelectItem(u.getId(), u.getEmail())).collect(Collectors.toList());
     }
 
+    public void delete(int id) {
+        subjectDao.removeById(id);
+    }
+
     public void persist() {
         Location location = locationDao.findById(locationId);
         subject.setLocation(location);

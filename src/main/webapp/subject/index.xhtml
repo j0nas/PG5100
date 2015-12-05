@@ -8,14 +8,17 @@
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
-        <p:dataTable var="subject" value="#{subjectController.getAll()}">
+        <p:dataTable id="subjects" var="subject" value="#{subjectController.getAll()}">
             <p:column headerText="Name">
                 <h:outputText value="#{subject.name}"/>
             </p:column>
-            <p:column>
-                <p:link outcome="details" value="Details">
+            <p:column headerText="Actions">
+                <p:link outcome="details">
                     <f:param name="id" value="#{subject.id}"/>
+                    <p:button value="Details"/>
                 </p:link>
+
+                <p:commandButton value="Delete" action="#{subjectController.delete(subject.id)}" update="subjects"/>
             </p:column>
         </p:dataTable>
     </ui:define>

@@ -34,4 +34,9 @@ public class JpaSubjectDao implements SubjectDao {
     public List<Subject> getAll() {
         return entityManager.createNamedQuery("Subject.getAll", Subject.class).getResultList();
     }
+
+    @Override
+    public void removeById(int id) {
+        entityManager.remove(findById(id));
+    }
 }

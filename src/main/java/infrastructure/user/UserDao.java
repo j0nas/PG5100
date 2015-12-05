@@ -14,4 +14,6 @@ public interface UserDao {
     List<User> getAll();
 
     boolean remove(User user);
+
+    void removeById(int id);
 }

@@ -26,6 +26,13 @@ public class User {
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<Subject> subjects;
 
+    @PreRemove
+    private void removeSubjectsFromUser() {
+        for (Subject subject : subjects) {
+            subject.getUsers().remove(this);
+        }
+    }
+
     public int getId() {
         return id;
     }
