@@ -38,10 +38,6 @@ public class SubjectController {
         subject = new Subject();
     }
 
-    public List<Subject> getAll() {
-        return subjectDao.getAll();
-    }
-
     public int getSubjectId() {
         return subjectId;
     }
@@ -82,6 +78,15 @@ public class SubjectController {
         Location location = subject.getLocation();
         return location.getBuilding() + " - " + location.getRoom();
     }
+
+    public List<SelectItem> getNames() {
+        return getAll().stream().map(subject -> new SelectItem(subject.getId(), subject.getName())).collect(Collectors.toList());
+    }
+
+    public List<Subject> getAll() {
+        return subjectDao.getAll();
+    }
+
 
     public List<String> getSelectedUsers() {
         return subject.getUsers().stream().map(User::getEmail).collect(Collectors.toList());

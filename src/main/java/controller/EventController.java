@@ -16,8 +16,16 @@ import java.util.stream.Collectors;
 public class EventController {
     @Inject
     private EventDao eventDao;
-
+    private int eventId;
     private Event event;
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
 
     @PostConstruct
     private void init() {
@@ -34,6 +42,10 @@ public class EventController {
 
     public void persist() {
         eventDao.persist(event);
+    }
+
+    public void initEvent() {
+        event = eventDao.findById(eventId);
     }
 
     public List<Event> getAll() {

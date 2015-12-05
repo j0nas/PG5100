@@ -21,6 +21,7 @@
             <h:outputLabel for="users" value="Users:"/>
             <h:selectManyCheckbox id="users" value="#{subjectController.userIds}">
                 <f:selectItems value="#{subjectController.getUsers()}"/>
+                <br/>
             </h:selectManyCheckbox>
             <br/>
             <h:commandButton value="Submit" action="#{subjectController.persist()}"/>
