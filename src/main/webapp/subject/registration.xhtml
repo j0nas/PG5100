@@ -9,22 +9,26 @@
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
         <h:form>
-            <p:messages/>
-            <h:outputLabel for="name" value="Name:"/>
-            <h:inputText id="name" value="#{subjectController.subject.name}"/>
-            <br/>
-            <h:outputLabel for="location" value="Location:"/>
-            <h:selectOneMenu id="location" value="#{subjectController.locationId}">
-                <f:selectItems var="location" value="#{subjectController.getLocations()}"/>
-            </h:selectOneMenu>
-            <br/>
-            <h:outputLabel for="users" value="Users:"/>
-            <h:selectManyCheckbox id="users" value="#{subjectController.userIds}">
-                <f:selectItems value="#{subjectController.getUsers()}"/>
-                <br/>
-            </h:selectManyCheckbox>
-            <br/>
-            <h:commandButton value="Submit" action="#{subjectController.persist()}"/>
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="name" value="Name"/>
+                <p:inputText id="name" value="#{subjectController.subject.name}" required="true"/>
+                <p:message for="name"/>
+
+                <p:outputLabel for="location" value="Location"/>
+                <p:selectOneMenu id="location" value="#{subjectController.locationId}" required="true">
+                    <f:selectItem itemLabel="Select location" itemValue="" noSelectionOption="true"/>
+                    <f:selectItems var="location" value="#{subjectController.getLocations()}"/>
+                </p:selectOneMenu>
+                <p:message for="location"/>
+
+                <p:outputLabel for="users" value="Participants"/>
+                <p:selectManyCheckbox id="users" layout="grid" columns="3" value="#{subjectController.userIds}">
+                    <f:selectItems value="#{subjectController.getUsers()}" var="user" itemLabel="#{user}"
+                                   itemValue="#{user}"/>
+                </p:selectManyCheckbox>
+                <p:message for="users"/>
+            </h:panelGrid>
+            <p:commandButton value="Submit" ajax="false" action="#{subjectController.persist()}" icon="ui-icon-check"/>
         </h:form>
     </ui:define>
 </ui:composition>

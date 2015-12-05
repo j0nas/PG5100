@@ -28,7 +28,7 @@ public class UserController {
         user = new User();
     }
 
-    public void persistNewUser() {
+    public void persist() {
         userDao.persist(user);
     }
 

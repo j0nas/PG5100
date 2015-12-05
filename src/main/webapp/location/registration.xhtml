@@ -8,14 +8,16 @@
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
         <h:form>
-            <p:messages/>
-            <h:outputLabel for="building" value="Building"/>
-            <h:inputText id="building" value="#{locationController.location.building}"/>
-            <br/>
-            <h:outputLabel for="room" value="Room"/>
-            <h:inputText id="room" value="#{locationController.location.room}"/>
-            <br/>
-            <h:commandButton value="Submit" action="#{locationController.persist()}"/>
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="building" value="Building"/>
+                <p:inputText id="building" value="#{locationController.location.building}" required="true"/>
+                <p:message for="building"/>
+
+                <p:outputLabel for="room" value="Room"/>
+                <p:inputText id="room" value="#{locationController.location.room}" required="true"/>
+                <p:message for="room"/>
+            </h:panelGrid>
+            <p:commandButton value="Submit" ajax="false" action="#{locationController.persist}" icon="ui-icon-check"/>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -18,15 +18,14 @@
                 <p:password id="password" value="#{userController.user.password}" required="true" feedback="true"/>
                 <p:message for="password"/>
 
-                <h:outputLabel for="userType" value="Type"/>
-                <p:selectOneMenu id="userType" value="#{userController.user.type}" required="true">
-                    <f:selectItem itemLabel="Select user type" itemValue="" noSelectionOption="true"/>
+                <p:outputLabel for="userType" value="Type"/>
+                <p:selectOneButton id="userType" value="#{userController.user.type}" required="true">
                     <f:selectItems value="#{userController.getUserTypes()}"/>
-                </p:selectOneMenu>
+                </p:selectOneButton>
                 <p:message for="userType"/>
             </h:panelGrid>
 
-            <h:commandButton value="Submit" action="#{userController.persistNewUser()}"/>
+            <p:commandButton value="Submit" ajax="false" action="#{userController.persist}" icon="ui-icon-check"/>
         </h:form>
     </ui:define>
 </ui:composition>

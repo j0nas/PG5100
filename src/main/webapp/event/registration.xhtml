@@ -9,43 +9,39 @@
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
         <h:form>
-            <p:messages/>
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="eventType" value="Type"/>
 
-            <p:outputLabel for="eventType" value="Type"/>
-            <p:selectOneMenu id="eventType" value="#{eventController.event.type}">
-                <f:selectItems value="#{eventController.getEventTypes()}"/>
-            </p:selectOneMenu>
-            <br/>
-            <p:outputLabel for="title" value="Title"/>
-            <p:inputText id="title" value="#{eventController.event.title}"/>
-            <br/>
-            <p:outputLabel for="description" value="Description"/>
-            <p:inputText id="description" value="#{eventController.event.description}"/>
-            <br/>
-            <p:outputLabel for="subject" value="Subject"/>
-            <p:selectOneMenu id="subject" value="#{eventController.event}">
-                <f:selectItems value="#{subjectController.getNames()}"/>
-            </p:selectOneMenu>
-            <br/>
+                <p:selectOneButton id="eventType" value="#{eventController.event.type}" required="true">
+                    <f:selectItems value="#{eventController.getEventTypes()}"/>
+                </p:selectOneButton>
+                <p:message for="eventType"/>
 
-            <!--h:outputLabel for="startTime" value="Start time"/>
-            <h:inputText id="startTime" value="#{eventController.event.startTime}"/>
-            <br/>
-            <h:outputLabel for="endTime" value="End time"/>
-            <h:inputText id="endTime" value="#{eventController.event.endTime}"/-->
+                <p:outputLabel for="title" value="Title"/>
+                <p:inputText id="title" value="#{eventController.event.title}" required="true"/>
+                <p:message for="title"/>
 
+                <p:outputLabel for="description" value="Description"/>
+                <p:inputText id="description" value="#{eventController.event.description}" required="true"/>
+                <p:message for="description"/>
 
-            <p:outputLabel for="starttime" value="Start time"/>
-            <p:calendar id="starttime" value="#{eventController.event.startTime}" pattern="dd.MM.yyyy HH:mm"/>
-            <p:message for="starttime"/>
+                <p:outputLabel for="subject" value="Subject"/>
+                <p:selectOneMenu id="subject" value="#{eventController.subjectId}" required="true">
+                    <f:selectItems value="#{eventController.getSubjects()}"/>
+                </p:selectOneMenu>
+                <p:message for="subject"/>
 
-            <p:outputLabel for="endtime" value="End time"/>
-            <p:calendar id="endtime" value="#{eventController.event.endTime}" pattern="dd.MM.yyyy HH:mm"/>
-            <p:message for="endtime"/>
+                <p:outputLabel for="startTime" value="Start time"/>
+                <p:calendar id="startTime" value="#{eventController.start}" pattern="dd.MM.yyy HH:mm"
+                            required="true"/>
+                <p:message for="startTime"/>
 
-            <br/>
-            <br/>
-            <h:commandButton value="Submit" action="#{eventController.persist()}"/>
+                <p:outputLabel for="endTime" value="End time"/>
+                <p:calendar id="endTime" value="#{eventController.end}" pattern="dd.MM.yyy HH:mm"
+                            required="true"/>
+                <p:message for="endTime"/>
+            </h:panelGrid>
+            <p:commandButton value="Submit" ajax="false" action="#{eventController.persist}" icon="ui-icon-check"/>
         </h:form>
     </ui:define>
 </ui:composition>
