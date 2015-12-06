@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://xmlns.jcp.org/jsf/html">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
         <f:metadata>
@@ -12,11 +12,17 @@
             <f:viewAction action="#{locationController.initLocation()}"/>
         </f:metadata>
 
-        <ul>
-            <li>Id: <h:outputText value="#{locationController.location.id}"/></li>
-            <li>Building: <h:outputText value="#{locationController.location.building}"/></li>
-            <li>Room: <h:outputText value="#{locationController.location.room}"/></li>
-        </ul>
+        <h:panelGrid columns="2" cellpadding="10">
+            <f:facet name="header">
+                <h:outputText value="Location details"/>
+            </f:facet>
+            <p:outputText value="ID"/>
+            <p:outputText value="#{locationController.location.id}"/>
+            <p:outputText value="Building"/>
+            <p:outputText value="#{locationController.location.building}"/>
+            <p:outputText value="Room"/>
+            <p:outputText value="#{locationController.location.room}"/>
+        </h:panelGrid>
     </ui:define>
 </ui:composition>
 </html>

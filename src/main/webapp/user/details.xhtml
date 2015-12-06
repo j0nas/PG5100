@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://xmlns.jcp.org/jsf/html"
 >
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
@@ -13,12 +13,19 @@
             <f:viewAction action="#{userController.initUser()}"/>
         </f:metadata>
 
-        <h2><h:outputText value="#{userController.user.email}"/></h2>
-        <ul>
-            <li>Id: <h:outputText value="#{userController.user.id}"/></li>
-            <li>Type: <h:outputText value="#{userController.user.type}"/></li>
-            <li>Subject: <h:outputText value="#{userController.getSelectedSubjects()}"/></li>
-        </ul>
+        <h:panelGrid columns="2" cellpadding="10">
+            <f:facet name="header">
+                <h:outputText value="User details"/>
+            </f:facet>
+            <p:outputText value="ID"/>
+            <p:outputText value="#{userController.user.id}"/>
+            <p:outputText value="E-mail"/>
+            <p:outputText value="#{userController.user.email}"/>
+            <p:outputText value="Type"/>
+            <p:outputText value="#{userController.user.type}"/>
+            <p:outputText value="Subjects"/>
+            <p:outputText value="#{userController.getSelectedSubjects()}"/>
+        </h:panelGrid>
     </ui:define>
 </ui:composition>
 </html>

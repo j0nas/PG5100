@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://xmlns.jcp.org/jsf/html">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
         <f:metadata>
@@ -12,15 +12,29 @@
             <f:viewAction action="#{eventController.initEvent()}"/>
         </f:metadata>
 
-        <ul>
-            <li>Id: <h:outputText value="#{eventController.event.id}"/></li>
-            <li>Name: <h:outputText value="#{eventController.event.title}"/></li>
-            <li>Subject: <h:outputText value="#{eventController.event.subject.name}"/></li>
-            <li>Description: <h:outputText value="#{eventController.event.description}"/></li>
-            <li>Type: <h:outputText value="#{eventController.event.type}"/></li>
-            <li>Start: <h:outputText value="#{eventController.event.startTime}"/></li>
-            <li>End: <h:outputText value="#{eventController.event.endTime}"/></li>
-        </ul>
+        <h:panelGrid columns="2" cellpadding="10">
+            <f:facet name="header">
+                <h:outputText value="Event details"/>
+            </f:facet>
+            <p:outputText value="ID"/>
+            <p:outputText value="#{eventController.event.id}"/>
+            <p:outputText value="Title"/>
+            <p:outputText value="#{eventController.event.title}"/>
+            <p:outputText value="Subject"/>
+            <p:outputText value="#{eventController.event.subject.name}"/>
+            <p:outputText value="Description"/>
+            <p:outputText value="#{eventController.event.description}"/>
+            <p:outputText value="Type"/>
+            <p:outputText value="#{eventController.event.type}"/>
+            <p:outputText value="Start"/>
+            <p:outputText value="#{eventController.event.startTime}"/>
+            <p:outputText value="End"/>
+            <p:outputText value="#{eventController.event.endTime}"/>
+            <p:outputText value="Room"/>
+            <p:outputText value="#{eventController.event.subject.location.room}"/>
+            <p:outputText value="Building"/>
+            <p:outputText value="#{eventController.event.subject.location.building}"/>
+        </h:panelGrid>
     </ui:define>
 </ui:composition>
 </html>

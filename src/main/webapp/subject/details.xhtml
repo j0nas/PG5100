@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://xmlns.jcp.org/jsf/html">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
         <f:metadata>
@@ -12,12 +12,19 @@
             <f:viewAction action="#{subjectController.initSubject()}"/>
         </f:metadata>
 
-        <ul>
-            <li>Id: <h:outputText value="#{subjectController.subject.id}"/></li>
-            <li>Name: <h:outputText value="#{subjectController.subject.name}"/></li>
-            <li>Location: <h:outputText value="#{subjectController.getSelectedLocation()}"/></li>
-            <li>Users: <h:outputText value="#{subjectController.getSelectedUsers()}"/></li>
-        </ul>
+        <h:panelGrid columns="2" cellpadding="10">
+            <f:facet name="header">
+                <h:outputText value="Subject details"/>
+            </f:facet>
+            <p:outputText value="ID"/>
+            <p:outputText value="#{subjectController.subject.id}"/>
+            <p:outputText value="Name"/>
+            <p:outputText value="#{subjectController.subject.name}"/>
+            <p:outputText value="Location"/>
+            <p:outputText value="#{subjectController.selectedLocation}"/>
+            <p:outputText value="Users"/>
+            <p:outputText value="#{subjectController.selectedUsers}"/>
+        </h:panelGrid>
     </ui:define>
 </ui:composition>
 </html>
