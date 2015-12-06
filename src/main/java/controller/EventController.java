@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Model
 public class EventController {
     @Inject
-    private EventDao eventDao;
+    private EventDao dao;
     private int eventId;
     private Event event;
 
@@ -79,15 +79,19 @@ public class EventController {
         event.setStartTime(LocalDateTime.ofInstant(start.toInstant(), ZoneId.systemDefault()));
         event.setEndTime(LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault()));
         event.setSubject(subjectDao.findById(subjectId));
-        eventDao.persist(event);
+        dao.persist(event);
+    }
+
+    public void delete(int id) {
+        dao.delete(id);
     }
 
     public void initEvent() {
-        event = eventDao.findById(eventId);
+        event = dao.findById(eventId);
     }
 
     public List<Event> getAll() {
-        return eventDao.getAll();
+        return dao.getAll();
     }
 
     public List<SelectItem> getSubjects() {

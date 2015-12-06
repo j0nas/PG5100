@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
-@NamedQuery(name = "Event.getAll", query = "SELECT e FROM Event e")
+@NamedQuery(name = "Event.getAll", query = "SELECT e FROM Event e ORDER BY e.startTime DESC")
 @Table(name = "EVENT")
 @SecondaryTable(name = "EVENT_DETAILS", pkJoinColumns = @PrimaryKeyJoinColumn(name = "ID"))
 public class Event {

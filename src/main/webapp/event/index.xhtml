@@ -7,14 +7,17 @@
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
-        <p:dataTable var="event" value="#{eventController.getAll()}">
+        <p:dataTable id="events" var="event" value="#{eventController.getAll()}">
             <p:column headerText="Title">
                 <h:outputText value="#{event.title}"/>
             </p:column>
-            <p:column headerText="Details">
-                <p:link outcome="details" value="Details">
+            <p:column headerText="Actions">
+                <p:link outcome="details">
                     <f:param name="id" value="#{event.id}"/>
+                    <p:button value="Details"/>
                 </p:link>
+
+                <p:commandButton value="Delete" action="#{eventController.delete(event.id)}" update="events"/>
             </p:column>
         </p:dataTable>
     </ui:define>

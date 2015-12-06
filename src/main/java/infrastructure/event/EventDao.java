@@ -10,4 +10,6 @@ public interface EventDao {
     Event findById(int id);
 
     List<Event> getAll();
+
+    void delete(int id);
 }
