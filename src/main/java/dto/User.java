@@ -28,8 +28,10 @@ public class User {
 
     @PreRemove
     private void removeSubjectsFromUser() {
-        for (Subject subject : subjects) {
-            subject.getUsers().remove(this);
+        if (subjects != null) {
+            for (Subject subject : subjects) {
+                subject.getUsers().remove(this);
+            }
         }
     }
 

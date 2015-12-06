@@ -71,10 +71,8 @@ public class JpaUserDaoIT {
 
     @Test
     public void testRemove() throws Exception {
-        entityManager.getTransaction().begin();
+        final User user = this.user;
         dao.remove(user);
-        entityManager.getTransaction().commit();
-
         assertNull(dao.findById(user.getId()));
     }
 }

@@ -10,8 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class JpaLocationDaoIT {
     private EntityManagerFactory factory;
@@ -40,8 +39,14 @@ public class JpaLocationDaoIT {
     }
 
     @Test
-    public void testCreate() throws Exception {
+    public void testPersist() throws Exception {
         assertEquals(entityManager.find(Location.class, location.getId()), location);
+    }
+
+    @Test
+    public void testFindById() throws Exception {
+        assertNotNull(location);
+        assertEquals(location, dao.findById(location.getId()));
     }
 
     @Test
@@ -50,8 +55,9 @@ public class JpaLocationDaoIT {
     }
 
     @Test
-    public void testFind() throws Exception {
-        assertNotNull(location);
-        assertEquals(location, dao.findById(location.getId()));
+    public void testRemoveById() throws Exception {
+        final int id = location.getId();
+        dao.removeById(id);
+        assertNull(dao.findById(id));
     }
 }
