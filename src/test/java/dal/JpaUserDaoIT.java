@@ -1,7 +1,8 @@
-package infrastructure.user;
+package dal;
 
 import dto.User;
 import dto.UserType;
+import infrastructure.user.JpaUserDao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,18 +44,6 @@ public class JpaUserDaoIT {
     @Test
     public void testPersist() throws Exception {
         assertNotNull(user);
-    }
-
-    @Test
-    public void testUpdate() throws Exception {
-        final String email = "altered_mail@test.com";
-        user.setEmail(email);
-
-        entityManager.getTransaction().begin();
-        dao.update(user);
-        entityManager.getTransaction().commit();
-
-        assertEquals(email, dao.findById(user.getId()).getEmail());
     }
 
     @Test

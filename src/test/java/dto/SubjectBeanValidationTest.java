@@ -1,7 +1,5 @@
-package infrastructure.subject;
+package dto;
 
-import dto.Subject;
-import dto.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +13,7 @@ import java.util.Set;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class SubjectBeanValidation {
+public class SubjectBeanValidationTest {
     Validator validator;
     ValidatorFactory validatorFactory;
 

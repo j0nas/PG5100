@@ -16,12 +16,6 @@ public class ArrayListUserDao implements UserDao {
     }
 
     @Override
-    public boolean update(User user) {
-        users.set(user.getId(), user);
-        return true;
-    }
-
-    @Override
     public User findById(int id) {
         return users.get(id);
     }

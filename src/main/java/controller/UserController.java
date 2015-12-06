@@ -56,6 +56,10 @@ public class UserController {
         this.user = user;
     }
 
+    public void setUserById() {
+        setUser(dao.findById(selectedId));
+    }
+
     public void delete(int id) {
         dao.removeById(id);
     }

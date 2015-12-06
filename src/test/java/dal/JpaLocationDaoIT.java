@@ -1,6 +1,7 @@
-package infrastructure.location;
+package dal;
 
 import dto.Location;
+import infrastructure.location.JpaLocationDao;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

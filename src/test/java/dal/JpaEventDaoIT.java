@@ -1,8 +1,9 @@
-package infrastructure.event;
+package dal;
 
 import dto.Event;
 import dto.EventType;
 import dto.Subject;
+import infrastructure.event.JpaEventDao;
 import infrastructure.subject.JpaSubjectDao;
 import org.junit.After;
 import org.junit.Before;

@@ -27,15 +27,6 @@ public class JpaUserDao implements UserDao {
     }
 
     @Override
-    public boolean update(User user) {
-        if (!entityManager.contains(user)) {
-            entityManager.merge(user);
-        }
-
-        return true;
-    }
-
-    @Override
     public User findById(int id) {
         return entityManager.find(User.class, id);
     }

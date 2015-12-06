@@ -1,8 +1,9 @@
-package infrastructure.subject;
+package dal;
 
 import dto.Location;
 import dto.Subject;
 import infrastructure.location.JpaLocationDao;
+import infrastructure.subject.JpaSubjectDao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,6 +1,5 @@
-package infrastructure.location;
+package dto;
 
-import dto.Location;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +11,7 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-public class LocationBeanValidation {
+public class LocationBeanValidationTest {
     Validator validator;
     ValidatorFactory validatorFactory;
 

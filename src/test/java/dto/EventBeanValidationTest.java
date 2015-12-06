@@ -1,8 +1,5 @@
-package infrastructure.event;
+package dto;
 
-import dto.Event;
-import dto.EventType;
-import dto.Subject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +12,7 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-public class EventBeanValidation {
+public class EventBeanValidationTest {
     Validator validator;
     ValidatorFactory validatorFactory;
     Event event;

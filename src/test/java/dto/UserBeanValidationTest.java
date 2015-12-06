@@ -1,7 +1,5 @@
-package infrastructure.user;
+package dto;
 
-import dto.User;
-import dto.UserType;
 import org.junit.Before;
 import org.junit.Test;
 
